@@ -1737,6 +1737,10 @@ button:focus {
   border-radius: 4px;
 }
 
+#carousel-area img {
+  filter: brightness(50%);
+}
+
 #slider-area {
   margin-top: -1px;
 }
