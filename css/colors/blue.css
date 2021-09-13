@@ -137,12 +137,12 @@ footer .menu li a:hover{
 /* Custom css */
 
 #custom-footer{
-	background-color: #8e44ad;
+	background-color: #1AB7D8;
 }
 
 #custom-footer-social li a{
 	background: #ffffff;
-	color: #8e44ad;
+	color: #1AB7D8;
 }
 
 .custom-font-color{
@@ -206,5 +206,5 @@ footer .menu li a:hover{
   }
 
   #articulos .blog-item-text h3 a:hover{
-	color: #8e44ad;
+	color: #1AB7D8;
 }
