@@ -41,6 +41,9 @@
 				<div class="collapse navbar-collapse" id="navbarCollapse">
 					<ul class="navbar-nav mr-auto w-100 justify-content-end">
 						<li class="nav-item">
+							<a class="nav-link page-scroll" href="pages/login/login.html">Iniciar sesión</a>
+						</li>
+						<li class="nav-item">
 							<a class="nav-link page-scroll" href="#slider-area">Inicio</a>
 						</li>
 						<li class="nav-item">
@@ -289,119 +292,12 @@
 				<p class="section-subtitle">Algunas evidencias de nuestros mejores trabajos</p>
 			</div>
 
-			<!-- Portfolio Recent Projects -->
 			<div id="portfolio" class="row mb-3">
-				<div class="col-lg-4 col-md-6 col-xs-12 mix development print">
+				<div v-for="image in images" class="col-lg-4 col-md-6 col-xs-12">
 					<div class="portfolio-item">
 						<div class="shot-item">
-							<img src="img/gallery/gallery1.jpg" alt="" />
-							<div class="single-content">
-								<div class="fancy-table">
-									<div class="table-cell">
-										<div class="zoom-icon">
-											<a class="lightbox" href="img/gallery/gallery1.jpg">
-												<i class="lni-zoom-in item-icon"></i>
-											</a>
-										</div>
-										<a href="#">View Project</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 col-xs-12 mix design print">
-					<div class="portfolio-item">
-						<div class="shot-item">
-							<img src="img/gallery/gallery2.jpg" alt="" />
-							<div class="single-content">
-								<div class="fancy-table">
-									<div class="table-cell">
-										<div class="zoom-icon">
-											<a class="lightbox" href="img/gallery/gallery2.jpg">
-												<i class="lni-zoom-in item-icon"></i>
-											</a>
-										</div>
-										<a href="#">View Project</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 col-xs-12 mix development">
-					<div class="portfolio-item">
-						<div class="shot-item">
-							<img src="img/gallery/gallery3.jpg" alt="" />
-							<div class="single-content">
-								<div class="fancy-table">
-									<div class="table-cell">
-										<div class="zoom-icon">
-											<a class="lightbox" href="img/gallery/gallery3.jpg">
-												<i class="lni-zoom-in item-icon"></i>
-											</a>
-										</div>
-										<a href="#">View Project</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 col-xs-12 mix development design">
-					<div class="portfolio-item">
-						<div class="shot-item">
-							<img src="img/gallery/gallery4.jpg" alt="" />
-							<div class="single-content">
-								<div class="fancy-table">
-									<div class="table-cell">
-										<div class="zoom-icon">
-											<a class="lightbox" href="img/gallery/gallery4.jpg">
-												<i class="lni-zoom-in item-icon"></i>
-											</a>
-										</div>
-										<a href="#">View Project</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 col-xs-12 mix development">
-					<div class="portfolio-item">
-						<div class="shot-item">
-							<img src="img/gallery/gallery5.jpg" alt="" />
-							<div class="single-content">
-								<div class="fancy-table">
-									<div class="table-cell">
-										<div class="zoom-icon">
-											<a class="lightbox" href="img/gallery/gallery5.jpg">
-												<i class="lni-zoom-in item-icon"></i>
-											</a>
-										</div>
-										<a href="#">View Project</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 col-xs-12 mix print design">
-					<div class="portfolio-item">
-						<div class="shot-item">
-							<img src="img/gallery/gallery6.jpg" alt="" />
-							<div class="single-content">
-								<div class="fancy-table">
-									<div class="table-cell">
-										<div class="zoom-icon">
-											<a class="lightbox" href="img/gallery/gallery6.jpg">
-												<i class="lni-zoom-in item-icon"></i>
-											</a>
-										</div>
-										<a href="#">View Project</a>
-									</div>
-								</div>
-							</div>
+							<img :src="image.image" :key="image.id" alt="Image not available" data-toggle="modal"
+								data-target="#imageDetailModal" @click="setCurrentImage(image)">
 						</div>
 					</div>
 				</div>
@@ -420,6 +316,31 @@
 			</div>
 		</div>
 		<!-- Container Ends -->
+
+		<!-- Modal -->
+		<div class="modal fade" id="imageDetailModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-lg">
+				<div class="modal-content">
+					<div class="modal-body pb-0 pt-0">
+						<div class="row">
+							<div class="col-8 p-0">
+								<img :src="currentImage?.image" alt="" style="max-width: -webkit-fill-available;">
+							</div>
+							<div class="col-4 p-0">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+								<h5 class="m-3" v-text="currentImage?.title" style="font-size: 25px;"></h5>
+								<hr>
+								<p class="m-3" v-text="currentImage?.body"></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Modal end -->
 	</section>
 	<!-- Portfolio Section Ends -->
 
@@ -768,6 +689,31 @@
 			<div class="double-bounce2"></div>
 		</div>
 	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+	<script>
+		var app = new Vue({
+			el: '#portfolios',
+			data: {
+				currentImage: null,
+				images: []
+			},
+
+			methods: {
+				setCurrentImage: function (image) {
+					console.log(image)
+					this.currentImage = image;
+				}
+			},
+
+			mounted: async function () {
+				let response = await fetch('http://project-ram.test/api/gallery');
+				let data = await response.json();
+				console.log(data.data);
+				this.images = data.data;
+			}
+		})
+	</script>
 
 	<!-- jQuery first, then Tether, then Bootstrap JS. -->
 	<script src="js/jquery-min.js"></script>
